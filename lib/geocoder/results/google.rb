@@ -11,6 +11,18 @@ module Geocoder::Result
       formatted_address
     end
 
+    def street_number
+      if street_number = address_components_of_type(:street_number).first
+        street_number['short_name']
+      end
+    end
+    
+    def street
+      if street = address_components_of_type(:route).first
+        street['long_name']
+      end
+    end
+    
     def district
       if district = address_components_of_type(:sublocality).first
         district['long_name']
