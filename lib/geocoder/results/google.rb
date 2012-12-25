@@ -11,6 +11,12 @@ module Geocoder::Result
       formatted_address
     end
 
+    def district
+      if district = address_components_of_type(:sublocality).first
+        district['long_name']
+      end
+    end
+    
     def city
       fields = [:locality, :sublocality,
         :administrative_area_level_3,
